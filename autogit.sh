@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: $0 [-c | --commitonly] [-p | --pushonly] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
+    echo "Usage: autogit.sh [-c | --commitonly] [-p | --pushonly] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
     echo ""
     echo "  -c, --commitonly  Only add and commit changes, but do not push"
     echo "  -p, --pushonly    Only push changes, but do not add or commit"
