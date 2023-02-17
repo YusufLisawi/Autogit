@@ -10,7 +10,7 @@ This script provides a simple and convenient way to add, commit, and push change
 
 ## Installation
 
-    curl -s https://raw.githubusercontent.com/YusufLisawi/autogit/master/install.sh | zsh && source ~/.zshrc
+    curl -fsSL https://raw.githubusercontent.com/YusufLisawi/autogit/master/install.sh | zsh && source ~/.zshrc
 
 ## Usage
 
