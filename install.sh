@@ -2,22 +2,19 @@
 
 # Delete and reinstall Autogit from Github repo
 rm -rf ~/.autogit
-git clone --depth=1 https://github.com/YusufLisawi/Autogit $HOME/.autogit
 
+curl -fsSL https://raw.githubusercontent.com/YusufLisawi/Autogit/master/autogit.sh > ~/.autogit.sh
 # Add Autogit to path
 echo "export PATH=\$HOME/.autogit/bin:\$PATH" >> ~/.zshrc
-# Set Autogit temporary folders
-export AUTOGIT_CACHE=/tmp/\$USER/autogit/Caches
-export AUTOGIT_TEMP=/tmp/\$USER/autogit/Temp
 
 # Set the executable bit on the script file
-/bin/chmod +x ~/.autogit/.autogit.sh
+/bin/chmod +x ~/.autogit.sh
 
 # Add the autogit source line to the appropriate shell startup file
 if [[ "$SHELL" == "/bin/bash" ]]; then
-    echo "source \$HOME/.autogit/.autogit.sh" >> ~/.bashrc
+    echo "source \$HOME/.autogit.sh" >> ~/.bashrc
 else
-    echo "source \$HOME/.autogit/.autogit.sh" >> ~/.zshrc
+    echo "source \$HOME/.autogit.sh" >> ~/.zshrc
 fi
 
 # Print a success message
