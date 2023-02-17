@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: $0 [-c | --commitonly] [-p | --pushonly] [-cp | --commitpush] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
+    echo "Usage: autogit.sh [-c | --commitonly] [-p | --pushonly] [-cp | --commitpush] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
     echo ""
     echo "  -c, --commitonly  Only add and commit changes, but do not push"
     echo "  -p, --pushonly    Only push changes, but do not add or commit"
@@ -78,8 +78,11 @@ elif [ "$commit_push" = true ]; then
     git push --set-upstream origin master
     echo "Changes have been committed and pushed"
 else
-    git add .
-    git commit -m "$commit_message"
-    git push --set-upstream origin master
-    echo "Changes have been committed and pushed"
+    read -p "Do you want to commit and push automatically? (y/n): " answer
+    if [[ $answer == "y" || $answer == "Y" ]]; then
+        git add .
+        git commit -m "$commit_message"
+        git push --set-upstream origin master
+        echo "Changes have been committed and pushed"
+    fi
 fi
