@@ -4,8 +4,8 @@
 rm -rf ~/.autogit
 git clone --depth=1 https://github.com/YusufLisawi/Autogit $HOME/.autogit
 
-# Add brew to path
-export PATH=\$HOME/.autogit/bin:\$PATH
+# Add Autogit to path
+echo "export PATH=\$HOME/.autogit/bin:\$PATH" >> ~/.zshrc
 # Set Autogit temporary folders
 export AUTOGIT_CACHE=/tmp/\$USER/autogit/Caches
 export AUTOGIT_TEMP=/tmp/\$USER/autogit/Temp
@@ -15,9 +15,9 @@ export AUTOGIT_TEMP=/tmp/\$USER/autogit/Temp
 
 # Add the autogit source line to the appropriate shell startup file
 if [[ "$SHELL" == "/bin/bash" ]]; then
-    echo "source $HOME/.autogit/.autogit.sh" >> ~/.bashrc
+    echo "source \$HOME/.autogit/.autogit.sh" >> ~/.bashrc
 else
-    echo "source $HOME/.autogit/.autogit.sh" >> ~/.zshrc
+    echo "source \$HOME/.autogit/.autogit.sh" >> ~/.zshrc
 fi
 
 # Print a success message
