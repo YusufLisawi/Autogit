@@ -8,6 +8,10 @@ This script provides a simple and convenient way to add, commit, and push change
     -m or --message: Use a custom commit message. By default, the commit message is "Automated commit".
     -h or --help: Display help information.
 
+## Installation
+
+    curl -s https://raw.githubusercontent.com/YusufLisawi/autogit/master/install.sh | zsh
+
 ## Usage
 
 To use this script, simply run the script file in the terminal, followed by the desired options.
