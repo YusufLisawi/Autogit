@@ -6,10 +6,6 @@ if [ -f ~/.autogit ]; then
 fi
 git clone --depth=1 https://github.com/YusufLisawi/Autogit $HOME/.autogit
 
-# Remove the autogit source line from the appropriate shell startup file
-sed -i '/source \$HOME\/\.autogit\.sh/d' ~/.bashrc
-sed -i '/source \$HOME\/\.autogit\.sh/d' ~/.zshrc
-
 # Add brew to path
 export PATH=\$HOME/.autogit/bin:\$PATH
 # Set Autogit temporary folders
