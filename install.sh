@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # Delete and reinstall Autogit from Github repo
-if [ -f ~/.autogit ]; then
-    /bin/rm -rf ~/.autogit
-fi
+rm -rf ~/.autogit
 git clone --depth=1 https://github.com/YusufLisawi/Autogit $HOME/.autogit
 
 # Add brew to path
@@ -17,9 +15,9 @@ export AUTOGIT_TEMP=/tmp/\$USER/autogit/Temp
 
 # Add the autogit source line to the appropriate shell startup file
 if [[ "$SHELL" == "/bin/bash" ]]; then
-    echo "source $HOME/autogit/.autogit.sh" >> ~/.bashrc
+    echo "source $HOME/.autogit/.autogit.sh" >> ~/.bashrc
 else
-    echo "source $HOME/autogit/.autogit.sh" >> ~/.zshrc
+    echo "source $HOME/.autogit/.autogit.sh" >> ~/.zshrc
 fi
 
 # Print a success message
