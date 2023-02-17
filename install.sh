@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# Delete and reinstall Autogit from Github repo
-rm -rf ~/.autogit
+# Define the download URL and the installation directory
+DOWNLOAD_URL="https://raw.githubusercontent.com/YusufLisawi/autogit/master/autogit.sh"
+INSTALL_DIR="$HOME/autogit"
 
-curl -fsSL https://raw.githubusercontent.com/YusufLisawi/Autogit/master/autogit.sh > ~/.autogit.sh
-# Add Autogit to path
-echo "export PATH=\$HOME/.autogit/bin:\$PATH" >> ~/.zshrc
+# Create the installation directory if it doesn't exist
+mkdir -p "$INSTALL_DIR"
 
-# Set the executable bit on the script file
-/bin/chmod +x ~/.autogit.sh
+# Download the script using curl
+curl -fsSL "${DOWNLOAD_URL}" > "$INSTALL_DIR/autogit.sh"
 
-# Add the autogit source line to the appropriate shell startup file
-if [[ "$SHELL" == "/bin/bash" ]]; then
-    echo "source \$HOME/.autogit.sh" >> ~/.bashrc
-else
-    echo "source \$HOME/.autogit.sh" >> ~/.zshrc
-fi
+# Make the script executable
+/bin/chmod +x "$INSTALL_DIR/autogit.sh"
 
-# Print a success message
+# Add the installation directory to the system's PATH
+echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$HOME/.bashrc"
+echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$HOME/.zshrc"
+
+# Print a message indicating success
 echo "The autogit command has been installed and added to the system's path."
-echo "Run \e[1;32mautogit -help or -h \033[0m for more info."
+echo "Please restart your shell or run 'source ~/.bashrc' or 'source ~/.zshrc' to use the 'autogit' command."
