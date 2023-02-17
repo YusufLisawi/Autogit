@@ -13,7 +13,7 @@ usage() {
 }
 
 # default commit message
-commit_message="Automated commit"
+commit_message="Updates"
 
 # parse arguments
 while [[ $# -gt 0 ]]; do
