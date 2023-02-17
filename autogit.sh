@@ -1,10 +1,11 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: autogit.sh [-c | --commitonly] [-p | --pushonly] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
+    echo "Usage: $0 [-c | --commitonly] [-p | --pushonly] [-cp | --commitpush] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
     echo ""
     echo "  -c, --commitonly  Only add and commit changes, but do not push"
     echo "  -p, --pushonly    Only push changes, but do not add or commit"
+    echo "  -cp, --commitpush Add, commit, and push changes"
     echo "  -m, --message     Custom commit message"
     echo "  -h, --help        Display this help and exit"
     echo "  --                This option can be used to delimit the end of the options"
@@ -23,6 +24,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         -p|--pushonly)
             push_only=true
+            shift
+            ;;
+        -cp|--commitpush)
+            commit_push=true
             shift
             ;;
         -m|--message)
@@ -67,9 +72,14 @@ if [ "$commit_only" = true ]; then
 elif [ "$push_only" = true ]; then
     git push
     echo "Changes have been pushed but not committed"
+elif [ "$commit_push" = true ]; then
+    git add .
+    git commit -m "$commit_message"
+    git push --set-upstream origin master
+    echo "Changes have been committed and pushed"
 else
     git add .
     git commit -m "$commit_message"
-    git push
+    git push --set-upstream origin master
     echo "Changes have been committed and pushed"
 fi
