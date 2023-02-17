@@ -18,25 +18,25 @@ To use this script, simply run the script file in the terminal, followed by the 
 
 **-c or --commitonly**: Only add and commit changes, but do not push.
 
-    ./git_auto.sh -c
+    ./autogit.sh -c
 
 **-p or --pushonly**: Only push changes, but do not add or commit.
 
-    ./git_auto.sh -p
+    ./autogit.sh -p
 
 **-cp or --commitpush**: Add, commit, and push changes.
 
-    ./git_auto.sh -cp
+    ./autogit.sh -cp
 
 **-m or --message**: Use a custom commit message. By default, the commit message is "Automated commit".
 
 
-    ./git_auto.sh -m "Commit message"
+    ./autogit.sh -m "Commit message"
 
 **-h or --help**: Display help information.
 
 
-    ./git_auto.sh -h
+    ./autogit.sh -h
 
 ### Notes
 
