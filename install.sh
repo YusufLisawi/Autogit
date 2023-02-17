@@ -14,9 +14,10 @@ curl -fsSL "${DOWNLOAD_URL}" > "$INSTALL_DIR/autogit.sh"
 /bin/chmod +x "$INSTALL_DIR/autogit.sh"
 
 # Add the installation directory to the system's PATH
-echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$HOME/.bashrc"
-echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$HOME/.zshrc"
+echo "export PATH=\"\$PATH:\$HOME/autogit\"" >> "$HOME/.bashrc"
+echo "export PATH=\"\$PATH:\$HOME/autogit\"" >> "$HOME/.zshrc"
 
+source ~/autogit/autogit.sh
 # Print a message indicating success
 echo "The autogit command has been installed and added to the system's path."
 echo "Please restart your shell or run 'source ~/.bashrc' or 'source ~/.zshrc' to use the 'autogit' command."
