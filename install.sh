@@ -1,23 +1,32 @@
 #!/bin/bash
 
-/bin/rm -rf ~/.autogit.sh > /dev/null 2>&1
+# Delete and reinstall Autogit from Github repo
+if [ -f ~/.autogit.sh ]; then
+    /bin/rm -rf ~/.autogit.sh > /dev/null 2>&1
+fi
+rm -rf $HOME/.brew
+git clone --depth=1 https://github.com/YusufLisawi/Autogit $HOME/.autogit
 
-# Define the download URL and the installation directory
-DOWNLOAD_URL="https://raw.githubusercontent.com/YusufLisawi/autogit/master/autogit.sh"
+# Remove the autogit source line from the appropriate shell startup file
+sed -i '/source \$HOME\/\.autogit\.sh/d' ~/.bashrc
+sed -i '/source \$HOME\/\.autogit\.sh/d' ~/.zshrc
 
-# Download the script using curl
-curl -fsSL "${DOWNLOAD_URL}" > ~/.autogit.sh
-chmod +x ~/.autogit.sh
+# Add brew to path
+export PATH=\$HOME/.autogit/bin:\$PATH
+# Set Autogit temporary folders
+export AUTOGIT_CACHE=/tmp/\$USER/autogit/Caches
+export AUTOGIT_TEMP=/tmp/\$USER/autogit/Temp
 
-# Add the installation directory to the system's PATH
-if [ -z "$(grep ~/.bashrc)" ]; then
-	echo "source ~/.autogit.sh" >> ~/.bashrc
+# Set the executable bit on the script file
+chmod +x ~/.autogit/.autogit.sh
+
+# Add the autogit source line to the appropriate shell startup file
+if [[ "$SHELL" == "/bin/bash" ]]; then
+    echo "source $HOME/.autogit.sh" >> ~/.bashrc
+else
+    echo "source $HOME/.autogit.sh" >> ~/.zshrc
 fi
 
-if [ -z "$(grep ~/.zshrc)" ]; then
-  	echo "source ~/.autogit.sh" >> ~/.zshrc
-fi
-
-# Print a message indicating success
+# Print a success message
 echo "The autogit command has been installed and added to the system's path."
-echo "run \e[1;32m autogit -help or -h \033[0m for more info"
+echo "Run \e[1;32mautogit -help or -h \033[0m for more info."
