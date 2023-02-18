@@ -5,6 +5,7 @@ This script provides a simple and convenient way to add, commit, and push change
     -c or --commitonly: Only add and commit changes, but do not push.
     -p or --pushonly: Only push changes, but do not add or commit.
     -cp or --commitpush: Add, commit, and push changes.
+    -b, --branch      Specify the branch to push changes to.
     -m or --message: Use a custom commit message. By default, the commit message is "Automated commit".
     -h or --help: Display help information.
 
@@ -31,6 +32,10 @@ To use this script, simply run the script file in the terminal, followed by the 
 **-cp or --commitpush**: Add, commit, and push changes.
 
     ./autogit.sh -cp
+
+**-b or --branch**: Specify the branch to push to
+
+    ./autogit.sh -b branch_name
 
 **-m or --message**: Use a custom commit message. By default, the commit message is "Automated commit".
 
