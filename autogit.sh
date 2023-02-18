@@ -1,11 +1,12 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: autogit.sh [-c | --commitonly] [-p | --pushonly] [-cp | --commitpush] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
+    echo "Usage: autogit.sh [-c | --commitonly] [-p | --pushonly] [-cp | --commitpush] [-b | --branch BRANCH_NAME] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
     echo ""
     echo "  -c, --commitonly  Only add and commit changes, but do not push"
     echo "  -p, --pushonly    Only push changes, but do not add or commit"
     echo "  -cp, --commitpush Add, commit, and push changes"
+    echo "  -b, --branch      Specify the branch to push changes to"
     echo "  -m, --message     Custom commit message"
     echo "  -h, --help        Display this help and exit"
     echo "  --                This option can be used to delimit the end of the options"
@@ -14,6 +15,9 @@ usage() {
 
 # default commit message
 commit_message="Updates"
+
+# default branch to push changes to
+branch_name="master"
 
 # parse arguments
 while [[ $# -gt 0 ]]; do
@@ -29,6 +33,14 @@ while [[ $# -gt 0 ]]; do
         -cp|--commitpush)
             commit_push=true
             shift
+            ;;
+        -b|--branch)
+            if [[ -z $2 || $2 == -* ]]; then
+                echo "Error: Missing branch name argument" >&2
+                exit 1
+            fi
+            branch_name="$2"
+            shift 2
             ;;
         -m|--message)
             if [[ -z $2 || $2 == -* ]]; then
@@ -75,14 +87,13 @@ elif [ "$push_only" = true ]; then
 elif [ "$commit_push" = true ]; then
     git add .
     git commit -m "$commit_message"
-    git push --set-upstream origin master
-    echo "Changes have been committed and pushed"
+    git push --set-upstream origin "$branch_name"
+    echo "Changes have been committed and pushed to $branch_name"
 else
     read -p "Do you want to commit and push automatically? (y/n): " answer
     if [[ $answer == "y" || $answer == "Y" ]]; then
         git add .
         git commit -m "$commit_message"
-        git push --set-upstream origin master
-        echo "Changes have been committed and pushed"
+        git push origin "$branch_name"
     fi
 fi
