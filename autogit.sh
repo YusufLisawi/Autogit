@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 usage() {
     echo "Usage: autogit.sh [-c | --commitonly] [-p | --pushonly] [-cp | --commitpush] [-b | --branch BRANCH_NAME] [-m | --message COMMIT_MESSAGE] [-h | --help] [--]"
@@ -17,7 +17,7 @@ usage() {
 commit_message="Updates"
 
 # default branch to push changes to
-branch_name="master"
+branch_name="main"
 
 # parse arguments
 while [[ $# -gt 0 ]]; do
