@@ -68,4 +68,3 @@ fi
 if [ "$push" = true ]; then
     git push origin "$branch_name"
 fi
-
